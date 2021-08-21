@@ -20,6 +20,7 @@ RUN	apk update && apk add ca-certificates \
 COPY --from=builder /app/start.sh /app/start.sh
 COPY --from=tailscale /app/tailscaled /app/tailscaled
 COPY --from=tailscale /app/tailscale /app/tailscale
+COPY start.sh /app/
 COPY smb.conf /app/
 COPY supervisord.conf /app/
 RUN	mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
