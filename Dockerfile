@@ -20,11 +20,10 @@ RUN	apk update && apk add ca-certificates \
 COPY --from=builder /app/start.sh /app/start.sh
 COPY --from=tailscale /app/tailscaled /app/tailscaled
 COPY --from=tailscale /app/tailscale /app/tailscale
-COPY start.sh /app/
 COPY smb.conf /app/
 COPY supervisord.conf /app/
 RUN	mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
-
+RUN chmod +x /app/start.sh
 # 137, 138 for nmbd and 139, 445 for smbd
 EXPOSE 135/tcp 137/udp 138/udp 139/tcp 445/tcp
 
