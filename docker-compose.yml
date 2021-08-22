@@ -1,0 +1,14 @@
+---
+version: "2"
+services:
+  samba-tailscale:
+    image: ghcr.io/niklasthegeek/docker-smb-tailscale
+    container_name: smb-tailscale
+    hostname: smb-tailscale # defines the name shown on the Tailscale Admin Dashboard
+    environment:
+      - TAILSCALE_AUTHKEY=tskey-abcdef1432341818 # put your Tailscale Auth Key here 
+    volumes:
+      #- /some/path/:/data      #uncomment for writable share
+      #- /some/path/:/data:ro   #uncomment for read only share
+      #- /some/path/smb.conf:/app/smb.conf # if you want to povide your own config add shares with volumes accordingly
+    restart: unless-stopped
